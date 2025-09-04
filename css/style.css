@@ -7,7 +7,7 @@
 --shadow:0 10px 30px rgba(2,6,23,.08);
 }
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
 a{color:var(--accent);text-decoration:none}
 img{max-width:100%;display:block}
 .container{max-width:1120px;margin:0 auto;padding:0 20px}
@@ -21,6 +21,7 @@ header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(12px);backgroun
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:72px 0;border-bottom:1px solid var(--border)}
 .hero h1{font-size:40px;line-height:1.15;margin:0 0 12px}
 .muted{color:var(--muted)}
+.small{font-size:12px}
 .headshot{width:220px;height:220px;border-radius:50%;object-fit:cover;border:2px solid var(--border);box-shadow:var(--shadow)}
 .headshot-wrap{display:flex;justify-content:center}
 .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
@@ -33,6 +34,12 @@ header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(12px);backgroun
 .tag{font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
 footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted)}
 .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;border:1px solid var(--border);border-radius:6px;padding:2px 6px}
+/* Contact form */
+.contact-form{display:grid;gap:12px}
+.contact-form label{display:grid;gap:6px}
+.contact-form input,.contact-form textarea{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px}
+/* Floating theme button for mobile */
+.fab{position:fixed;right:16px;bottom:16px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);padding:12px 14px;box-shadow:var(--shadow);cursor:pointer}
 /* Responsive */
 @media (max-width: 900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}}
-@media (max-width: 640px){.grid{grid-template-columns:1fr} .nav-links{display:none}}
+@media (max-width: 640px){.grid{grid-template-columns:1fr} .nav-links a{display:none} /* keep only toggle visible via FAB */}

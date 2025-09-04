@@ -1,61 +1,67 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tanushree Nepal — Portfolio</title>
-<meta name="description" content="Tanushree Nepal — Data Science & ML portfolio: projects, articles, contact." />
-<meta property="og:title" content="Tanushree Nepal — Portfolio" />
-<meta property="og:description" content="Data Science & ML portfolio: projects, articles, contact." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="/assets/og-image.png" />
-<link rel="icon" href="/assets/favicon.png" />
-<link rel="stylesheet" href="/css/style.css" />
-</head>
-<body>
-<header>
-<div class="container nav">
-<div class="brand">Tanushree Nepal</div>
-<nav class="nav-links">
-<a href="#projects">Projects</a>
-<a href="#blog">Blog</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
-<button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
-</nav>
-</div>
-</header>
-
-
-<main class="container">
-<section class="hero" id="home">
-<div>
-<h1>Data Scientist & ML Engineer</h1>
-<p class="muted">I build practical machine learning and data products — from credit risk forecasting and NLP to clean web APIs. I enjoy shipping reliable systems and explaining the <em>why</em> behind results.</p>
-<div class="btn-row">
-<a class="btn" href="https://github.com/Tanushree28" target="_blank" rel="noopener">GitHub</a>
-<a class="btn" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">LinkedIn</a>
-<a class="btn ghost" href="/assets/Tanushree_Nepal___Resume.pdf" target="_blank" rel="noopener">Resume</a>
-</div>
-</div>
-<div class="headshot-wrap">
-<img class="headshot" src="/assets/headshot.jpg" alt="Tanushree Nepal headshot" />
+</article>
 </div>
 </section>
 
 
-<section class="section" id="projects">
-<h2>Projects</h2>
-<div class="grid">
-<article class="card">
-<h3>Credit Risk Forecasting</h3>
-<p class="muted">Scikit‑learn/TensorFlow models improving default prediction by 15% with clean feature pipeline.</p>
-<div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">SQL</span></div>
-<p><a href="#">Code →</a></p>
-</article>
-<article class="card">
-<h3>HRMS Payroll Integration</h3>
-<p class="muted">FastAPI services for payroll + biometric ingest, cutting HR workload by 40%.</p>
-<div class="tags"><span class="tag">FastAPI</span><span class="tag">AWS</span><span class="tag">Docker</span></div>
-<p><a href="#">Code →</a></p>
+<section class="section" id="blog">
+<h2>Blog / Articles</h2>
+<div class="card">
+<p class="muted">Coming soon. Add Markdown posts under <code>/posts</code> and list them here.</p>
+</div>
+</section>
+
+
+<section class="section" id="about">
+<h2>About</h2>
+<div class="card">
+<p>Currently pursuing an MSc in Data Science & AI. I build ML systems, financial data platforms, and APIs across Python, FastAPI, and AWS.</p>
+</div>
+</section>
+
+
+<section class="section" id="contact">
+<h2>Contact</h2>
+<div class="card contact">
+<form class="contact-form" action="mailto:tanu.nepal1@gmail.com" method="post" enctype="text/plain">
+<label>
+Name
+<input type="text" name="name" placeholder="Your name" required>
+</label>
+<label>
+Email
+<input type="email" name="email" placeholder="you@example.com" required>
+</label>
+<label>
+Message
+<textarea name="message" rows="4" placeholder="How can I help?" required></textarea>
+</label>
+<button class="btn" type="submit">Send</button>
+<p class="muted small">or email me directly at <a href="mailto:tanu.nepal1@gmail.com">tanu.nepal1@gmail.com</a></p>
+</form>
+</div>
+</section>
+
+
+<section class="section" id="chatbot">
+<h2>Portfolio Chatbot (placeholder)</h2>
+<div class="card">
+<p class="muted">Future slot for an LLM Q&A bot about your projects. We’ll add a small FastAPI endpoint + embeddings and connect it here.</p>
+<button class="btn" disabled>Ask me about my work</button>
+</div>
+</section>
+</main>
+
+
+<!-- Floating theme button (so it works on mobile too) -->
+<button id="themeFab" class="fab" aria-label="Toggle theme">🌙</button>
+
+
+<footer>
+<div class="container">© <span id="year"></span> Tanushree Nepal</div>
+</footer>
+
+
+<script src="/js/main.js" defer></script>
+</body>
 </html>
