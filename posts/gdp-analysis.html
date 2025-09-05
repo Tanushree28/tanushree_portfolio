@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gross Domestic Product (GDP) — Analysis • Tanushree Nepal</title>
+  <meta name="description" content="Comparing GDP growth across regions, key indicators, and a simple linear regression model for GDP analysis." />
+  <link rel="icon" href="../assets/favicon.png" />
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <!-- Social share -->
+  <meta property="og:title" content="GDP Analysis — Tanushree Nepal" />
+  <meta property="og:description" content="GDP drivers, case studies, and a linear regression walk-through." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/blog/gdp/cover.png" />
+
+  <style>
+    /* Page-scoped styles to make posts pretty, without touching your main CSS */
+    .article { max-width: 860px; margin: 0 auto; }
+    .meta { color: var(--muted); font-size: 14px; margin-top: 6px }
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--border); color:var(--muted); font-size:12px; }
+    .cover { width:100%; height:auto; border-radius:16px; border:1px solid var(--border); box-shadow:var(--shadow); }
+    .prose { line-height: 1.8; font-size: 18px; }
+    .prose h1, .prose h2, .prose h3 { line-height:1.25; margin: 28px 0 10px; }
+    .prose p, .prose li { margin: 12px 0; }
+    .prose ul, .prose ol { padding-left: 20px; }
+    figure { margin: 18px 0; }
+    figure img { width:100%; border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); }
+    figure figcaption { color: var(--muted); font-size: 14px; margin-top:6px; text-align:center; }
+    .back { display:inline-flex; gap:8px; align-items:center; margin:16px 0 }
+    .hr { border-top:1px solid var(--border); margin:24px 0 }
+    .toc { background: var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; margin:16px 0 8px; }
+    .toc a { color: var(--text); }
+  </style>
+</head>
+<body>
+  <!-- site header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">Tanushree Nepal</div>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- article -->
+  <main class="container article">
+    <a class="back" href="../index.html#blog">← Back to blog</a>
+
+    <img class="cover" src="../assets/blog/gdp/cover.png" alt="GDP analysis cover image" />
+
+    <h1>Gross Domestic Product (GDP) Analysis</h1>
+    <div class="meta">
+      Writer: <strong>Tanushree Nepal</strong> ·
+      <time datetime="2022-12-03">Dec 3, 2022</time> ·
+      <span class="badge">~7 min read</span>
+    </div>
+
+    <div class="toc">
+      <strong>On this page</strong>
+      <ul>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#objective">Objectives</a></li>
+        <li><a href="#algo">Algorithm: Linear Regression</a></li>
+        <li><a href="#method">Methodology</a></li>
+        <li><a href="#data">Data Source & Cleaning</a></li>
+        <li><a href="#viz">Visualization & Findings</a></li>
+        <li><a href="#model">Predictive Modeling</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#refs">References</a></li>
+      </ul>
+    </div>
+
+    <div class="hr"></div>
+
+    <article class="prose">
+      <!-- Paste your text (from the other site or from the message you sent me) inside the tags below.
+           Convert headings/paragraphs to proper HTML as shown. Images go in <figure> with local paths. -->
+
+      <h2 id="intro">Introduction</h2>
+      <p>Gross Domestic Product (GDP) measures the market value for all products and services within a country's borders. GDP Growth Rate is the percentage increase in GDP from quarter to quarter. To avoid double counting, GDP includes only the final product value; intermediate goods like shoelaces in a shoe are not counted.</p>
+      <p><strong>Identity:</strong> GDP = Consumption + Investment + Government Spending + (Exports – Imports)</p>
+
+      <h2 id="objective">Objectives</h2>
+      <ol>
+        <li>Compare GDP growth between developed (USA, China, Kuwait, etc.) and developing nations (Nepal, Pakistan, Bangladesh, etc.).</li>
+        <li>Quantify how financial/economic indicators correlate with GDP.</li>
+      </ol>
+
+      <h2 id="algo">Algorithm Used — Linear Regression</h2>
+      <ul>
+        <li>Supervised ML algorithm modeling a linear relationship between a dependent variable (GDP) and multiple indicators (imports, revenue, taxes, net exports, etc.).</li>
+        <li>Chosen for interpretability and to estimate strength of each indicator’s association with GDP.</li>
+      </ul>
+
+      <h2 id="method">Methodology</h2>
+      <ol>
+        <li>Data collection</li>
+        <li>Cleaning</li>
+        <li>Preprocessing</li>
+        <li>Visualization</li>
+        <li>Model training & testing (Linear Regression)</li>
+      </ol>
+
+      <h2 id="data">Data Source & Cleaning</h2>
+      <p>World Bank datasets (1997–2021) across South Asia, North America, and MENA; ~32 countries. Indicators split by type (currency / percentage / number). NA values replaced with 0 per documented reasons in metadata rather than mean imputation across countries.</p>
+
+      <h2 id="viz">Visualization & Findings</h2>
+
+      <h3>Nepal vs China — Total GDP Over Time</h3>
+      <figure>
+        <img src="../assets/blog/gdp/fig_gdp_nepal_china.png" alt="Total GDP of Nepal and China over time">
+        <figcaption>Fig 1: Nepal’s GDP stalls around the 2015 earthquake, resumes growth, then dips in 2020; China continues growing.</figcaption>
+      </figure>
+
+      <h3>Exports of Goods & Services</h3>
+      <figure>
+        <img src="../assets/blog/gdp/fig_exports_corr.png" alt="Correlation of exports and GDP growth">
+        <figcaption>Fig 2: Export growth correlates strongly with GDP growth.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/blog/gdp/fig_exports_compare.png" alt="Exports over time: Nepal vs China">
+        <figcaption>Fig 3: China’s exports steadily increase; Nepal’s exports vary and dip post-2015.</figcaption>
+      </figure>
+
+      <h3>GDP Per Capita Over Time</h3>
+      <figure>
+        <img src="../assets/blog/gdp/fig_gdp_per_capita.png" alt="GDP per capita trends">
+        <figcaption>Fig 4: Nepal’s GDP per capita rises overall, with a decline in 2020 then recovery in 2021.</figcaption>
+      </figure>
+
+      <h3>Total Reserves (incl. gold)</h3>
+      <figure>
+        <img src="../assets/blog/gdp/fig_reserves.png" alt="Total reserves">
+        <figcaption>Fig 5: Reserves fall in 2021 as Nepal imports medical equipment during the pandemic.</figcaption>
+      </figure>
+
+      <h3>Gross National Income (GNI)</h3>
+      <figure>
+        <img src="../assets/blog/gdp/fig_gni.png" alt="GNI trend">
+        <figcaption>Fig 6: GNI dips in 2020 due to lockdowns reducing domestic value-added.</figcaption>
+      </figure>
+
+      <h2 id="model">Predictive Modeling</h2>
+      <p>Data split 70/30 (train/test). Linear regression on the currency indicators achieved an R² ≈ 0.99 for this dataset, suggesting a very strong linear fit.</p>
+      <figure>
+        <img src="../assets/blog/gdp/fig_r2_currency.png" alt="R-squared on currency indicators">
+        <figcaption>Fig 7: High R² on the currency indicators model.</figcaption>
+      </figure>
+
+      <h2 id="conclusion">Conclusion</h2>
+      <p>GDP is strongly affected by trade and financial indicators and by country-specific shocks. Nepal shows sensitivity around the 2015 earthquake and the 2020 pandemic; export strength and reserve policies materially influence outcomes.</p>
+
+      <h2 id="refs">References</h2>
+      <ul>
+        <li>World Bank indicators (Population, Reserves, etc.)</li>
+        <li>Migration Data Portal (international migrant stocks)</li>
+        <li>2005 Nepal coup d’état — background context</li>
+      </ul>
+    </article>
+
+    <div class="hr"></div>
+    <p class="meta">Originally drafted for Data Insight Online; republished on my site.</p>
+  </main>
+
+  <!-- site footer -->
+  <footer>
+    <div class="container">© <span id="year"></span> Tanushree Nepal</div>
+  </footer>
+
+  <!-- your site JS (theme toggle + year) -->
+  <script src="../js/main.js"></script>
+</body>
+</html>
