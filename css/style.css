@@ -79,3 +79,17 @@ footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);text
   object-fit: cover;
 }
 
+
+/* Brand logo in header */
+.brand {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+.brand .logo {
+  height: 28px;       /* adjust size here */
+  width: auto;
+  margin-right: 8px;  /* spacing between logo and text */
+  vertical-align: middle;
+}
