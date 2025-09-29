@@ -45,10 +45,33 @@ header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(12px);
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .tag{font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
 
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
+.skill-items{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:10px}
+.skill-items li{position:relative;padding-left:20px;font-size:14px;color:var(--muted)}
+.skill-items li::before{content:"•";position:absolute;left:4px;top:0;color:var(--accent)}
+.skill-items span{color:var(--text)}
+
 /* About */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.skills-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.skills-list li{background:var(--card);padding:8px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;display:flex;align-items:center;gap:6px}
+.achievements-list{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.achievements-list li{position:relative;padding-left:22px;color:var(--muted);font-size:14px}
+.achievements-list li::before{content:"★";position:absolute;left:0;top:0;color:var(--accent)}
+
+/* Timeline */
+.timeline{position:relative;display:grid;gap:24px;margin-top:28px;padding-left:28px}
+.timeline::before{content:"";position:absolute;top:0;bottom:0;left:12px;width:2px;background:var(--border)}
+.timeline-item{position:relative;padding-left:40px}
+.timeline-item::before{content:"";position:absolute;left:-4px;top:30px;width:18px;height:18px;border-radius:50%;border:3px solid var(--accent);background:var(--bg);box-shadow:0 0 0 6px color-mix(in srgb, var(--accent) 18%, transparent)}
+.timeline-card{display:flex;flex-direction:column;gap:12px}
+.timeline-card h3{font-size:20px;margin:0}
+.timeline-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.timeline-meta{margin:0;color:var(--muted);font-size:14px}
+.timeline-dates{font-weight:600;color:var(--accent);font-size:14px}
+.timeline-points{margin:0;padding-left:20px;display:grid;gap:8px}
+.timeline-points li{margin:0}
+.timeline-skills{display:flex;flex-wrap:wrap;gap:8px}
+.timeline-card .tag{font-size:11px}
 
 /* Footer */
 footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);text-align:center}
@@ -58,6 +81,16 @@ footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);text
   .hero{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr}
 }
+
+@media (max-width: 700px){
+  .timeline{padding-left:18px}
+  .timeline::before{left:8px}
+  .timeline-item{padding-left:30px}
+  .timeline-item::before{left:-6px}
+  .timeline-header{flex-direction:column}
+  .timeline-dates{align-self:flex-start}
+}
+
 
 /* Blog-specific grid overrides to match project card sizing */
 .blog-grid{

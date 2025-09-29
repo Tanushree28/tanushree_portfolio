@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HRMS Payroll Integration — Tanushree Nepal</title>
+  <meta name="description" content="Case study for the HRMS payroll integration led by Tanushree Nepal." />
+  <link rel="icon" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="../assets/logo-tn.svg" alt="TN logo" class="logo">
+        <span>Tanushree Nepal</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h1>HRMS Payroll Integration</h1>
+      <p class="muted">FastAPI microservices that synchronized biometric attendance, payroll, and compliance records.</p>
+      <div class="tags"><span class="tag">FastAPI</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">PostgreSQL</span></div>
+    </section>
+
+    <section class="section">
+      <h2>Problem</h2>
+      <p>
+        Finance and HR teams managed parallel data sources—attendance biometric devices, payroll spreadsheets, and compliance
+        checklists. Manual reconciliations consumed hours each week, and data mismatches delayed salary processing.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Approach</h2>
+      <ul class="achievements-list">
+        <li>Designed modular FastAPI services with Celery workers to ingest biometric logs and normalize them against HR master data.</li>
+        <li>Orchestrated infrastructure with AWS ECS, S3, and Parameter Store for secure config management.</li>
+        <li>Implemented automated validation tests and Slack alerts so discrepancies were surfaced instantly.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Impact</h2>
+      <p>
+        Payroll preparation time dropped by 40%, compliance checks were audit-ready, and the platform now produces executive
+        dashboards summarizing workforce costs, overtime, and leave trends each pay period.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Tanushree Nepal</div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
