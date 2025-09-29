@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cyberbullying Detector — Tanushree Nepal</title>
+  <meta name="description" content="Case study for the cyberbullying detection project led by Tanushree Nepal." />
+  <link rel="icon" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="../assets/logo-tn.svg" alt="TN logo" class="logo">
+        <span>Tanushree Nepal</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h1>Cyberbullying Detector</h1>
+      <p class="muted">NLP classifiers and a Streamlit moderation console that flags harmful content with 92% accuracy.</p>
+      <div class="tags"><span class="tag">NLP</span><span class="tag">SVM</span><span class="tag">Streamlit</span><span class="tag">Hugging Face</span></div>
+    </section>
+
+    <section class="section">
+      <h2>Problem</h2>
+      <p>
+        Moderators struggled to review thousands of community posts daily. The team needed a lightweight assistant that could
+        triage toxic content while providing transparent explanations to human reviewers.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Approach</h2>
+      <ul class="achievements-list">
+        <li>Curated multilingual training data, balancing classes with augmentation and targeted sampling.</li>
+        <li>Trained SVM, logistic regression, and transformer baselines; combined the best performing SVM with contextual embeddings.</li>
+        <li>Delivered a Streamlit dashboard with top terms, confidence scores, and reviewer actions for continuous learning.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Impact</h2>
+      <p>
+        The detector reduced manual review queues by 60%, surfaced repeat offenders automatically, and provided sentiment trends
+        that informed new community guidelines.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Tanushree Nepal</div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
