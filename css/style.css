@@ -46,6 +46,7 @@ header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(12px);
 .tag{font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
 
 /* Skills */
+
 .skills-card{margin-top:16px}
 .skills-list{display:grid;gap:14px;margin:0}
 .skills-row{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--border)}
@@ -53,6 +54,12 @@ header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(12px);
 .skills-row dt{margin:0;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:13px;color:var(--muted)}
 .skills-row dd{margin:0;font-size:15px;line-height:1.7;color:var(--text)}
 .skills-row strong{color:var(--accent)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
+.skill-items{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:10px}
+.skill-items li{position:relative;padding-left:20px;font-size:14px;color:var(--muted)}
+.skill-items li::before{content:"•";position:absolute;left:4px;top:0;color:var(--accent)}
+.skill-items span{color:var(--text)}
+
 
 /* About */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
