@@ -15,3 +15,31 @@ btn.addEventListener('click', () => {
   localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
   setIcon();
 });
+
+// lightweight HTML includes (e.g., experience timeline)
+document.querySelectorAll('[data-include]').forEach((placeholder) => {
+  const url = placeholder.getAttribute('data-include');
+  if (!url) return;
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) throw new Error(`Failed to load ${url}`);
+      return response.text();
+    })
+    .then((html) => {
+      placeholder.insertAdjacentHTML('afterend', html);
+      placeholder.remove();
+    })
+    .catch((error) => {
+      console.error(error);
+      const fallback = placeholder.querySelector('.include-fallback');
+      if (fallback) {
+        fallback.textContent = "We couldn't load this section right now. Please refresh the page.";
+      } else {
+        placeholder.insertAdjacentHTML(
+          'beforeend',
+          '<p class="muted">We couldn\'t load this section right now. Please refresh the page.</p>'
+        );
+      }
+    });
+});
