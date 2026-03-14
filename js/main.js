@@ -56,23 +56,29 @@ const images = [
   'assets/images/headshot.jpg'
 ];
 
+// Preload images so they render instantly when swapped
+images.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
 let currentImageIndex = 0;
 const slideshowImg = document.getElementById('profile-slideshow');
 
 if (slideshowImg) {
-  // Rotate every 60 seconds (60000 ms)
+  // Rotate every 5 seconds (5000 ms)
   setInterval(() => {
     // 1. Fade out by dropping opacity
     slideshowImg.style.opacity = '0';
     
-    // 2. Wait for fade out to finish (e.g. 800ms to match the CSS transition)
+    // 2. Wait for fade out to finish
     setTimeout(() => {
       // 3. Swap the image source
       currentImageIndex = (currentImageIndex + 1) % images.length;
       slideshowImg.src = images[currentImageIndex];
       
-      // 4. Fade back in
+      // 4. Wait for the image to logically load (or just force reflow), then fade back in
       slideshowImg.style.opacity = '1';
     }, 800); 
-  }, 60000);
+  }, 5000);
 }
