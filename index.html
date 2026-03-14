@@ -6,7 +6,13 @@
   <title>Tanushree Nepal — Portfolio</title>
   <meta name="description" content="Portfolio of Tanushree Nepal — Data Scientist & ML Engineer." />
   <link rel="icon" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Add Inter Font for sleek premium look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
   <!-- HEADER -->
@@ -14,148 +20,146 @@
     <div class="container nav">
       <div class="brand">
         <!-- Optional logo image -->
-        <img src="assets/logo-tn.svg" alt="TN logo" class="logo">
+        <img src="assets/logo-tn.svg" alt="TN logo" class="logo" onerror="this.style.display='none'">
         <span>Tanushree Nepal</span>
       </div>
       <nav class="nav-links">
-        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#blog">Blog</a>
-        <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
       </nav>
     </div>
   </header>
 
-  <!-- MAIN -->
-  <main class="container">
+  <!-- MAIN BENTO GRID -->
+  <main class="container bento-grid">
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div>
-        <h1>Hi, I’m Tanushree 👋</h1>
-        <p class="muted">
-          Data Scientist & ML Engineer. I like building credit-risk models, NLP tools, and FastAPI backends
-          that make data useful in the real world.
-        </p>
-        <div class="btn-row">
-          <a class="btn" href="https://github.com/Tanushree28" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn ghost" href="assets/Tanushree_Nepal___Resume.pdf" target="_blank" rel="noopener">Resume</a>
-        </div>
+    <!-- HERO (Bento Card) -->
+    <section class="bento-card span-2 row-span-1" id="home" style="justify-content: center;">
+      <h1>Hi, I’m Tanushree 👋</h1>
+      <p class="muted">
+        AI Researcher & Quantitative Engineer. I build retrieval-augmented generation (RAG) pipelines, deep reinforcement learning trading systems, and autonomous research agents.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="https://github.com/Tanushree28" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="assets/Tanushree_Nepal___Resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
-      <div class="headshot-wrap">
-        <img class="headshot" src="assets/headshot.jpg" alt="Tanushree Nepal headshot" />
+    </section>
+
+    <!-- HEADSHOT (Bento Card) -->
+    <section class="bento-card span-1 row-span-1" style="padding: 0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+      <img id="profile-slideshow" class="headshot-bento" src="assets/images/IMG_8682.jpeg" alt="Tanushree Nepal headshot" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease-in-out, transform 0.5s ease;" />
+    </section>
+
+    <!-- ABOUT ME (Bento Card) -->
+    <section class="bento-card span-1 row-span-1" id="about">
+      <h2>About Me</h2>
+      <p class="muted" style="font-size: 14px; margin-bottom: 16px;">
+        MSc Data Science & AI candidate with a strong foundation in statistical modeling and systems engineering. Aspiring PhD researcher focused on the intersection of deep learning and robust information retrieval.
+      </p>
+      <div class="tags" style="margin-top: auto;">
+        <span class="tag tech-glow">Research</span><span class="tag tech-glow">Applied ML</span><span class="tag tech-glow">NLP</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS (Bento Card) -->
+    <section class="bento-card span-4" id="projects">
+      <h2>Featured Projects</h2>
+      <div class="grid projects-grid">
+        <article class="card nested-card">
+          <h3>Stress-Test RAG in Biomedical QA</h3>
+          <p class="muted">End-to-end pipeline combining dense retrieval, re-ranking, and LLaMA-3-based answer generation for BioASQ.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">PyTorch</span><span class="tag">HuggingFace</span></div>
+          <p style="margin-top:auto; padding-top: 12px;"><a href="#projects">Master's Thesis Project</a></p>
+        </article>
+        <article class="card nested-card">
+          <h3>Kalshi Algo Trading &amp; Arbitrage</h3>
+          <p class="muted">High-frequency trading system in Rust with Deep Reinforcement Learning (DQN) in PyTorch to execute short-term arbitrage.</p>
+          <div class="tags"><span class="tag">DQN</span><span class="tag">Rust</span><span class="tag">PyTorch</span></div>
+          <p style="margin-top:auto; padding-top: 12px;"><a href="http://68.183.174.225:8501" target="_blank" rel="noopener">View Dashboard →</a></p>
+        </article>
+        <article class="card nested-card">
+          <h3>Agentic Web-Retrieval Engine</h3>
+          <p class="muted">Autonomous research agent performing multi-step workflows using instruction-tuned LLMs and web retrieval.</p>
+          <div class="tags"><span class="tag">LLMs</span><span class="tag">LangChain</span><span class="tag">Pydantic</span></div>
+          <p style="margin-top:auto; padding-top: 12px;"><a href="https://github.com/Tanushree28/AI_Agent_From_Scratch" target="_blank" rel="noopener">View on GitHub →</a></p>
+        </article>
+        <article class="card nested-card">
+          <h3>GenAI Impact on Learning</h3>
+          <p class="muted">Quantitative study applying correlation, regression, and mediation analysis on generative AI influence on students.</p>
+          <div class="tags"><span class="tag">Statistical Modeling</span><span class="tag">Regression</span></div>
+          <p style="margin-top:auto; padding-top: 12px;"><a href="https://colab.research.google.com/drive/1bvguCGCvYgqySOLZHtxt69AooZxPz4ms?usp=sharing" target="_blank" rel="noopener">View Analysis →</a></p>
+        </article>
+        <article class="card nested-card">
+          <h3>Cyberbullying Detection via NLP</h3>
+          <p class="muted">SVM-based NLP detection system on a 24k+ tweet dataset, achieving superior binary classification performance.</p>
+          <div class="tags"><span class="tag">NLP</span><span class="tag">SVM</span><span class="tag">Scikit-learn</span></div>
+          <p style="margin-top:auto; padding-top: 12px;"><a href="https://doi.org/10.5281/zenodo.18476489" target="_blank" rel="noopener">View Publication →</a></p>
+        </article>
       </div>
     </section>
 
     <!-- SKILLS (loaded via include) -->
     <div data-include="sections/skills.html">
-      <section class="section" id="skills">
+      <section class="bento-card span-4" id="skills">
         <h2>Skills</h2>
         <p class="muted include-fallback">Loading skills…</p>
       </section>
     </div>
 
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
-      <h2>Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Credit Risk Forecasting</h3>
-          <p class="muted">Scikit-learn/TensorFlow ensemble improving default prediction by 15% for banking partners.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">SQL</span></div>
-          <p><a href="projects/credit-risk-forecasting.html">View project →</a></p>
-        </article>
-        <article class="card">
-          <h3>HRMS Payroll Integration</h3>
-          <p class="muted">FastAPI services for payroll + biometric ingest that cut manual workload by 40%.</p>
-          <div class="tags"><span class="tag">FastAPI</span><span class="tag">AWS</span><span class="tag">Docker</span></div>
-          <p><a href="projects/hrms-payroll-integration.html">View project →</a></p>
-        </article>
-        <article class="card">
-          <h3>Cyberbullying Detector</h3>
-          <p class="muted">NLP pipeline with 92% accuracy and a Streamlit demo for rapid content review.</p>
-          <div class="tags"><span class="tag">NLP</span><span class="tag">SVM</span><span class="tag">Streamlit</span></div>
-          <p><a href="projects/cyberbullying-detector.html">View project →</a></p>
-        </article>
-      </div>
-    </section>
-
     <!-- EXPERIENCE (loaded via include) -->
     <div data-include="sections/experience.html">
-      <section class="section" id="experience">
+      <section class="bento-card span-2" id="experience">
         <h2>Experience</h2>
         <p class="muted include-fallback">Loading experience timeline…</p>
       </section>
     </div>
 
-    <!-- EDUCATION (loaded via include) -->
-    <div data-include="sections/education.html">
-      <section class="section" id="education">
-        <h2>Education</h2>
-        <p class="muted include-fallback">Loading education timeline…</p>
+    <!-- RIGHT STACK: Education + Blog + Resume -->
+    <div class="span-2" style="display: flex; flex-direction: column; justify-content: flex-start; gap: 24px;">
+      <!-- EDUCATION (loaded via include) -->
+      <div data-include="sections/education.html">
+        <section class="bento-card" id="education">
+          <h2>Education</h2>
+          <p class="muted include-fallback">Loading education timeline…</p>
+        </section>
+      </div>
+
+      <!-- BLOG (Bento Card) -->
+      <section class="bento-card" id="blog" style="display: flex; flex-direction: column;">
+        <h2>Blog / Articles</h2>
+        <article class="nested-card blog-nested" style="border:none;box-shadow:none;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <img src="assets/blog/gdp/cover.png" alt="GDP cover" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80'" style="border-radius:12px; width: 100%; height: 160px; object-fit: cover;">
+          <h3 style="margin:0;">Gross Domestic Product (GDP) — Analysis</h3>
+          <p class="muted" style="margin:0; font-size:14px;">Comparing developed vs developing nations, key indicators, and a simple linear regression model.</p>
+          <p style="margin-top:auto;"><a href="posts/gdp-analysis.html">Read article →</a></p>
+        </article>
+      </section>
+
+      <!-- RESUME -->
+      <section class="bento-card tech-gradient-bg" id="resume" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 24px;">
+        <h2 style="margin-bottom: 12px; font-size: 24px;">Resume / CV</h2>
+        <p class="muted" style="margin-bottom: 24px; font-size: 14px;">Download my full resume to view my background, complete experience, and technical projects in detail.</p>
+        <a class="btn primary-btn" href="assets/Tanushree_Nepal___Resume.pdf" target="_blank" rel="noopener" style="padding: 12px 28px;">
+          📄 Download PDF
+        </a>
       </section>
     </div>
 
-
-    <!-- BLOG -->
-    <section class="section" id="blog">
-      <h2>Blog / Articles</h2>
-      <div class="grid blog-grid">
-        <article class="card">
-          <img src="assets/blog/gdp/cover.png" alt="GDP cover" style="border-radius:12px;margin-bottom:10px;">
-          <h3>Gross Domestic Product (GDP) — Analysis</h3>
-          <p class="muted">Comparing developed vs developing nations, key indicators, and a simple linear regression model.</p>
-          <p><a href="posts/gdp-analysis.html">Read article →</a></p>
-        </article>
+    <!-- CONTACT (Bento Card) -->
+    <section class="bento-card span-4 tech-gradient-bg" id="contact" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+      <h2 style="margin-bottom: 8px;">Let's Connect</h2>
+      <p class="muted" style="margin-bottom: 24px; max-width: 60%;">Feel free to reach out for collaborations or just a friendly hello. Always open to discussing Data Science and AI.</p>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn primary-btn" href="mailto:tanu.nepal1@gmail.com">Email Me</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section" id="about">
-      <h2>About Me</h2>
-      <div class="about-grid">
-        <article class="card">
-          <p>
-            I’m an MSc Data Science &amp; AI candidate blending computer engineering, finance, and applied machine learning.
-            My work spans credit risk modeling, automated payroll systems, and NLP assistants that make data-driven decisions
-            faster and more reliable for teams.
-          </p>
-          <p>
-            Outside of work I mentor aspiring technologists, contribute to analytics communities, and explore human-centered
-            ways to align AI solutions with business outcomes.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Achievements &amp; Highlights</h3>
-          <ul class="achievements-list">
-            <li>Delivered a cloud-automated infrastructure assistant that cut AWS provisioning time by 20%.</li>
-            <li>Boosted student engagement 25% by weaving data science into higher-secondary CS curriculum.</li>
-            <li>Implemented QA automation covering 90% of regression tests, saving 15 hours of manual effort weekly.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <h2>Contact</h2>
-      <div class="card">
-        <p>Email: <a href="mailto:tanu.nepal1@gmail.com">tanu.nepal1@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">linkedin.com/in/tanushree-nepal</a></p>
-      </div>
-    </section>
-
-    <!-- CHATBOT PLACEHOLDER -->
-    <section class="section" id="chatbot">
-      <h2>Portfolio Chatbot (future)</h2>
-      <div class="card"><p class="muted">Placeholder for an LLM Q&A bot about my projects.</p></div>
-    </section>
   </main>
 
   <!-- FOOTER -->
@@ -164,6 +168,6 @@
   </footer>
 
   <!-- JS -->
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

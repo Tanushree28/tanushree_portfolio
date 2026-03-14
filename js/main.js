@@ -43,3 +43,36 @@ document.querySelectorAll('[data-include]').forEach((placeholder) => {
       }
     });
 });
+
+// Image Slideshow Logic
+const images = [
+  'assets/images/IMG_8682.jpeg',
+  'assets/images/20241005_124402.jpeg',
+  'assets/images/20250404_112919.jpeg',
+  'assets/images/IMG_4554.jpeg',
+  'assets/images/IMG_7545.jpeg',
+  'assets/images/IMG_7568.jpeg',
+  'assets/images/IMG_8670.jpeg',
+  'assets/images/headshot.jpg'
+];
+
+let currentImageIndex = 0;
+const slideshowImg = document.getElementById('profile-slideshow');
+
+if (slideshowImg) {
+  // Rotate every 60 seconds (60000 ms)
+  setInterval(() => {
+    // 1. Fade out by dropping opacity
+    slideshowImg.style.opacity = '0';
+    
+    // 2. Wait for fade out to finish (e.g. 800ms to match the CSS transition)
+    setTimeout(() => {
+      // 3. Swap the image source
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      slideshowImg.src = images[currentImageIndex];
+      
+      // 4. Fade back in
+      slideshowImg.style.opacity = '1';
+    }, 800); 
+  }, 60000);
+}
