@@ -82,3 +82,92 @@ if (slideshowImg) {
     }, 800); 
   }, 5000);
 }
+
+// -------------------------------------------------------------
+// CHATBOT ASSISTANT LOGIC (Simulated NLP / Keyword Matching)
+// -------------------------------------------------------------
+const chatToggle = document.getElementById('chatbot-toggle');
+const chatWindow = document.getElementById('chatbot-window');
+const chatClose = document.getElementById('chatbot-close');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
+const chatMessages = document.getElementById('chat-messages');
+
+if (chatToggle && chatWindow) {
+  // Open / Close Handlers
+  chatToggle.addEventListener('click', () => {
+    chatWindow.classList.add('open');
+    chatInput.focus();
+  });
+  
+  chatClose.addEventListener('click', () => {
+    chatWindow.classList.remove('open');
+  });
+
+  // Simulated AI Knowledge Base
+  const responses = {
+    'experience': "Tanushree is currently a Graduate Research Assistant at UCM building RAG pipelines for BioASQ. Previously, she was a Financial Data Analyst where she built LLM-driven AWS automation, and a High School CS Teacher!",
+    'skills': "Her core skills include Python, R, Deep Learning (LLMs, RAG, DQN), AWS Cloud Engineering, and Quantitative Modeling. She's also an AWS Certified AI Practitioner!",
+    'projects': "Her top projects include a Stress-Test RAG pipeline for Biomedical QA, a high-frequency Rust crypto arbitrage bot leveraging DQN, and an Agentic Web-Retrieval Engine.",
+    'contact': "You can connect with her on LinkedIn, check her GitHub, or reach out directly at tanu.nepal1@gmail.com. Head over to the contact section at the bottom!",
+    'thesis': "She has two! Her Master's thesis at UCM is on Stress-Testing RAG in Biomedical QA. Her MBA thesis focused on the impact of GenAI on student learning.",
+    'education': "She is pursuing an MSc in Data Science & AI at Univ. of Central Missouri, holds an MBA from Asia e University, and a B.E. in Computer Engineering from TU, Nepal.",
+    'default': "Ah, I'm just a simple automated assistant right now! 🤖 Try asking me about Tanushree's <strong>experience</strong>, <strong>skills</strong>, <strong>education</strong>, or <strong>projects</strong>."
+  };
+
+  // Keyword Matching Logic (Acts as a fast, simple intent classifier)
+  function processMessage(msg) {
+    const text = msg.toLowerCase();
+    let reply = responses['default'];
+    
+    // Check intents
+    if (text.includes('exp') || text.includes('work') || text.includes('job') || text.includes('intern') || text.includes('analyst')) {
+      reply = responses['experience'];
+    } else if (text.includes('skill') || text.includes('tech') || text.includes('tool') || text.includes('python') || text.includes('ai')) {
+      reply = responses['skills'];
+    } else if (text.includes('project') || text.includes('portfolio') || text.includes('build') || text.includes('github') || text.includes('kalshi') || text.includes('rag')) {
+      reply = responses['projects'];
+    } else if (text.includes('contact') || text.includes('email') || text.includes('hire') || text.includes('reach') || text.includes('linkedin')) {
+      reply = responses['contact'];
+    } else if (text.includes('thesis') || text.includes('research') || text.includes('publication') || text.includes('study')) {
+      reply = responses['thesis'];
+    } else if (text.includes('edu') || text.includes('school') || text.includes('degree') || text.includes('university') || text.includes('college') || text.includes('ucm')) {
+      reply = responses['education'];
+    } else if (text.includes('hello') || text.includes('hi') || text.includes('hey') || text.includes('greetings')) {
+      reply = "Hello! 👋 I can tell you all about Tanushree's incredible work. What would you like to know?";
+    } else if (text.includes('who are you') || text.includes('bot')) {
+      reply = "I'm Tanushree's personal portfolio assistant! I can speed up your review by instantly summarizing her background.";
+    }
+
+    // Simulate typing delay for realism
+    setTimeout(() => {
+      addMessage(reply, 'bot');
+    }, 600 + Math.random() * 400); 
+  }
+
+  // Render message in UI
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = `message ${sender}`;
+    div.innerHTML = `<div class="msg-bubble">${text}</div>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll down
+  }
+
+  // Handle Input Submission
+  function handleSend() {
+    const val = chatInput.value.trim();
+    if (!val) return;
+    
+    addMessage(val, 'user');
+    chatInput.value = '';
+    
+    // Show temporary typing indicator if desired, or just process
+    processMessage(val);
+  }
+
+  chatSend.addEventListener('click', handleSend);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSend();
+  });
+}
