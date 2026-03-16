@@ -29,6 +29,11 @@ document.querySelectorAll('[data-include]').forEach((placeholder) => {
     .then((html) => {
       placeholder.insertAdjacentHTML('afterend', html);
       placeholder.remove();
+      
+      // Initialize module specific scripts
+      if (url.includes('skills')) {
+        setTimeout(initSkillsChart, 100);
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -115,28 +120,41 @@ if (chatToggle && chatWindow) {
     'default': "Ah, I'm just a simple automated assistant right now! 🤖 Try asking me about Tanushree's <strong>experience</strong>, <strong>skills</strong>, <strong>education</strong>, or <strong>projects</strong>."
   };
 
-  // Keyword Matching Logic (Acts as a fast, simple intent classifier)
+  // Advanced Keyword Matching (Handles Misspellings & Broad Context)
+  const intentMap = {
+    'experience': ['experience', 'experiance', 'work', 'job', 'intern', 'analyst', 'experince', 'worked'],
+    'skills': ['skill', 'tech', 'tool', 'python', 'ai', 'skils', 'stack', 'framework', 'skil', 'language'],
+    'projects': ['project', 'portfolio', 'build', 'github', 'kalshi', 'rag', 'projets', 'projct', 'made', 'created'],
+    'contact': ['contact', 'email', 'hire', 'reach', 'linkedin', 'message', 'msg'],
+    'thesis': ['thesis', 'research', 'publication', 'study', 'paper', 'publish'],
+    'education': ['edu', 'school', 'degree', 'university', 'college', 'ucm', 'educasion', 'study']
+  };
+
   function processMessage(msg) {
-    const text = msg.toLowerCase();
-    let reply = responses['default'];
+    // Normalize string: lowercase and remove most punctuation for robust fuzzy matching
+    const text = msg.toLowerCase().replace(/[^\w\s]/g, '');
+    let matchedIntent = null;
     
-    // Check intents
-    if (text.includes('exp') || text.includes('work') || text.includes('job') || text.includes('intern') || text.includes('analyst')) {
-      reply = responses['experience'];
-    } else if (text.includes('skill') || text.includes('tech') || text.includes('tool') || text.includes('python') || text.includes('ai')) {
-      reply = responses['skills'];
-    } else if (text.includes('project') || text.includes('portfolio') || text.includes('build') || text.includes('github') || text.includes('kalshi') || text.includes('rag')) {
-      reply = responses['projects'];
-    } else if (text.includes('contact') || text.includes('email') || text.includes('hire') || text.includes('reach') || text.includes('linkedin')) {
-      reply = responses['contact'];
-    } else if (text.includes('thesis') || text.includes('research') || text.includes('publication') || text.includes('study')) {
-      reply = responses['thesis'];
-    } else if (text.includes('edu') || text.includes('school') || text.includes('degree') || text.includes('university') || text.includes('college') || text.includes('ucm')) {
-      reply = responses['education'];
-    } else if (text.includes('hello') || text.includes('hi') || text.includes('hey') || text.includes('greetings')) {
-      reply = "Hello! 👋 I can tell you all about Tanushree's incredible work. What would you like to know?";
-    } else if (text.includes('who are you') || text.includes('bot')) {
-      reply = "I'm Tanushree's personal portfolio assistant! I can speed up your review by instantly summarizing her background.";
+    for (const [intent, keywords] of Object.entries(intentMap)) {
+      if (keywords.some(kw => text.includes(kw))) {
+        matchedIntent = intent;
+        break;
+      }
+    }
+
+    let reply = '';
+    
+    if (matchedIntent) {
+      reply = responses[matchedIntent];
+    } else {
+      // Conversational Fallbacks
+      if (text.includes('hello') || text.includes('hi ') || text.trim() === 'hi' || text.includes('hey')) {
+        reply = "Hello! 👋 I can tell you all about Tanushree's incredible work. What would you like to know?";
+      } else if (text.includes('who are you') || text.includes('bot')) {
+        reply = "I'm an AI assistant built specifically to summarize Tanushree's resume and portfolio. Think of me as your interactive navigator!";
+      } else {
+        reply = "I’m an AI trained on Tanushree’s portfolio, but I didn't quite catch that. You can ask me about her <strong>experience</strong>, <strong>skills</strong>, <strong>projects</strong>, or directly <a href='mailto:tanu.nepal1@gmail.com' style='color:#A855F7'>email her</a> for complex questions!";
+      }
     }
 
     // Simulate typing delay for realism
@@ -171,3 +189,158 @@ if (chatToggle && chatWindow) {
     if (e.key === 'Enter') handleSend();
   });
 }
+
+// -------------------------------------------------------------
+// LAST UPDATED INDICATOR
+// -------------------------------------------------------------
+function updateLastModified() {
+  const el = document.getElementById('last-update-time');
+  if (el) {
+    // Check if we have a locally stored last modified, otherwise use document.lastModified
+    const date = new Date(document.lastModified);
+    if (date.toString() !== 'Invalid Date') {
+      const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+      el.textContent = date.toLocaleDateString(undefined, options);
+    } else {
+      el.textContent = "Today";
+    }
+  }
+}
+updateLastModified();
+
+// -------------------------------------------------------------
+// LIVE TRAFFIC / VISITOR MAP SIMULATION
+// -------------------------------------------------------------
+const cities = [
+  "New York, USA", "San Francisco, USA", "London, UK", "Berlin, DE", 
+  "Toronto, CA", "Sydney, AUS", "Tokyo, JP", "Mumbai, IN", 
+  "Singapore, SG", "Paris, FR", "Austin, USA", "Seattle, USA"
+];
+const actions = [
+  "viewed Projects", "checked Experience", "downloaded Resume", 
+  "viewed Skills Graph", "asked AI Assistant", "viewed BioASQ Thesis"
+];
+
+function initTrafficMonitor() {
+  const countEl = document.getElementById('visit-count');
+  const feedEl = document.getElementById('activity-feed');
+  if (!countEl || !feedEl) return;
+
+  // Retrieve or initialize total visits in localStorage
+  let visits = parseInt(localStorage.getItem('tn_visits') || '14052', 10);
+  
+  // Initially increase based on elapsed days maybe, but for now just bump it
+  visits += Math.floor(Math.random() * 5) + 1;
+  localStorage.setItem('tn_visits', visits.toString());
+  countEl.textContent = visits.toLocaleString();
+
+  // Remove placeholder
+  feedEl.innerHTML = '';
+
+  // Function to add a fake event
+  function addEvent() {
+    const city = cities[Math.floor(Math.random() * cities.length)];
+    const action = actions[Math.floor(Math.random() * actions.length)];
+    
+    // Add to feed
+    const div = document.createElement('div');
+    div.className = 'activity-item';
+    
+    const now = new Date();
+    const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+    
+    div.innerHTML = `<span class="pulse-dot" style="width:6px; height:6px; margin:0; animation-duration:3s;"></span> <span class="time">[${timeStr}]</span> User from <span class="country">${city}</span> ${action}`;
+    
+    feedEl.prepend(div);
+    
+    // Keep max 4 items
+    if (feedEl.children.length > 4) {
+      feedEl.removeChild(feedEl.lastChild);
+    }
+
+    // Bump counter slightly sometimes
+    if (Math.random() > 0.5) {
+      visits++;
+      localStorage.setItem('tn_visits', visits.toString());
+      countEl.textContent = visits.toLocaleString();
+    }
+    
+    // Next event in 3 to 12 secs
+    const nextWait = 3000 + Math.random() * 9000;
+    setTimeout(addEvent, nextWait);
+  }
+
+  // Pre-fill a couple of events
+  addEvent();
+  setTimeout(addEvent, 1500);
+}
+initTrafficMonitor();
+
+// -------------------------------------------------------------
+// INTERACTIVE SKILLS CHART
+// -------------------------------------------------------------
+function initSkillsChart() {
+  const canvas = document.getElementById('skillsChart');
+  if (!canvas) return; // Might not be inserted yet or removed
+  
+  // Prevent re-initialization
+  if (window.skillsChartInstance) return;
+
+  const ctx = canvas.getContext('2d');
+  const isDark = !document.documentElement.classList.contains('light');
+  
+  const textColor = isDark ? '#F3E8FF' : '#2B0548';
+  const gridColor = isDark ? 'rgba(168, 85, 247, 0.2)' : 'rgba(147, 51, 234, 0.2)';
+  const accentColor = isDark ? 'rgba(168, 85, 247, 0.8)' : 'rgba(147, 51, 234, 0.8)';
+  const bgColor = isDark ? 'rgba(168, 85, 247, 0.2)' : 'rgba(147, 51, 234, 0.2)';
+
+  window.skillsChartInstance = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['Deep Learning', 'RAG / NLP', 'Trading Bots / DRL', 'Cloud & AWS', 'Statistical Modeling', 'Software Eng.'],
+      datasets: [{
+        label: 'Skill Competency',
+        data: [90, 95, 85, 80, 88, 82],
+        backgroundColor: bgColor,
+        borderColor: accentColor,
+        pointBackgroundColor: accentColor,
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: accentColor,
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          angleLines: { color: gridColor },
+          grid: { color: gridColor },
+          pointLabels: {
+            color: textColor,
+            font: { family: 'Inter', size: 12, weight: '600' }
+          },
+          ticks: { display: false, min: 50, max: 100 }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: isDark ? 'rgba(15, 10, 25, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+          titleColor: isDark ? '#FFF' : '#000',
+          bodyColor: isDark ? '#CCC' : '#333',
+          borderColor: accentColor,
+          borderWidth: 1,
+          callbacks: {
+            label: function(context) {
+              return ` ${context.raw}% `;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+initSkillsChart();
+
