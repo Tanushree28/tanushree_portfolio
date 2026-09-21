@@ -205,3 +205,20 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Photography originals (HEIC etc.) — the site serves the converted copies in
+# assets/photography/web/, which are committed. Originals stay local.
+assets/photography/*.HEIC
+assets/photography/*.heic
+assets/photography/*.HEIF
+assets/photography/*.heif
+assets/photography/*.jpg
+assets/photography/*.jpeg
+assets/photography/*.png
+assets/photography/*.tif
+assets/photography/*.tiff
+!assets/photography/web/**
+
+# macOS Finder metadata
+.DS_Store
+**/.DS_Store

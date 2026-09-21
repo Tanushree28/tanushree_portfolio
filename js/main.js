@@ -21,7 +21,7 @@ document.querySelectorAll('[data-include]').forEach((placeholder) => {
   const url = placeholder.getAttribute('data-include');
   if (!url) return;
 
-  fetch(url)
+  fetch(url, { cache: 'no-cache' })
     .then((response) => {
       if (!response.ok) throw new Error(`Failed to load ${url}`);
       return response.text();
@@ -37,13 +37,18 @@ document.querySelectorAll('[data-include]').forEach((placeholder) => {
     })
     .catch((error) => {
       console.error(error);
+      // Opening index.html straight from disk (file://) blocks fetch, which is the
+      // usual reason a section is stuck on its "Loading…" placeholder locally.
+      const message = location.protocol === 'file:'
+        ? 'This section loads over HTTP. Serve the folder (e.g. `python3 -m http.server`) instead of opening the file directly.'
+        : "We couldn't load this section right now. Please refresh the page.";
       const fallback = placeholder.querySelector('.include-fallback');
       if (fallback) {
-        fallback.textContent = "We couldn't load this section right now. Please refresh the page.";
+        fallback.textContent = message;
       } else {
         placeholder.insertAdjacentHTML(
           'beforeend',
-          '<p class="muted">We couldn\'t load this section right now. Please refresh the page.</p>'
+          `<p class="muted">${message}</p>`
         );
       }
     });
@@ -344,3 +349,183 @@ function initSkillsChart() {
 }
 initSkillsChart();
 
+
+// -------------------------------------------------------------
+// PHOTOGRAPHY GRID + LIGHTBOX
+// Photos are read from a manifest so new images only need to be
+// dropped into assets/photography/ — see scripts/build-photography-manifest.sh
+// (run locally, or automatically via .github/workflows/photography-manifest.yml).
+// Manifest accepts either ["sunset.jpg", ...] or
+// [{ "file": "sunset.jpg", "caption": "Lee's Summit, MO" }, ...]
+// -------------------------------------------------------------
+const PHOTO_DIR = 'assets/photography/';
+const PHOTO_MANIFEST = PHOTO_DIR + 'manifest.json';
+const PHOTO_PAGE = 'photography.html';
+
+function photoUrl(file) {
+  return /^(https?:)?\//.test(file) ? file : PHOTO_DIR + file;
+}
+
+// Converted files are named <date>-<original>.jpg, so the date is the useful
+// part of the label; the camera's filename is not.
+function prettifyPhotoName(file) {
+  const base = file.split('/').pop().replace(/\.[^.]+$/, '');
+  const dated = base.match(/^(\d{4})-(\d{2})-(\d{2})-/);
+  if (dated) {
+    const d = new Date(`${dated[1]}-${dated[2]}-${dated[3]}T12:00:00`);
+    if (!isNaN(d)) return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long' });
+  }
+  return base.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function initPhotography() {
+  const grid = document.getElementById('photo-grid');
+  const empty = document.getElementById('photo-empty');
+  if (!grid) return;
+
+  fetch(PHOTO_MANIFEST, { cache: 'no-cache' })
+    .then((res) => {
+      if (!res.ok) throw new Error('No photography manifest');
+      return res.json();
+    })
+    .then((data) => {
+      const all = (Array.isArray(data) ? data : data.photos || [])
+        .map((item) => (typeof item === 'string' ? { file: item } : item))
+        .filter((item) => item && item.file);
+
+      if (!all.length) throw new Error('Manifest is empty');
+
+      // The homepage card shows a few as a teaser; the gallery page shows all.
+      const limit = parseInt(grid.dataset.preview || '0', 10);
+      const photos = limit > 0 ? all.slice(0, limit) : all;
+
+      const frag = document.createDocumentFragment();
+      photos.forEach((photo, index) => {
+        const src = photoUrl(photo.file);
+        const caption = photo.caption || '';
+
+        const figure = document.createElement('figure');
+        figure.tabIndex = 0;
+        figure.setAttribute('role', 'button');
+        figure.setAttribute('aria-label', caption || prettifyPhotoName(photo.file));
+
+        const img = document.createElement('img');
+        img.src = photo.thumb ? photoUrl(photo.thumb) : src;
+        img.alt = caption || prettifyPhotoName(photo.file);
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.addEventListener('error', () => figure.remove());
+        figure.appendChild(img);
+
+        if (caption) {
+          const cap = document.createElement('figcaption');
+          cap.textContent = caption;
+          figure.appendChild(cap);
+        }
+
+        const open = () => openLightbox(photos, index);
+        figure.addEventListener('click', open);
+        figure.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
+
+        frag.appendChild(figure);
+      });
+
+      grid.appendChild(frag);
+      if (empty) empty.hidden = true;
+
+      // Teaser: point at the full gallery rather than growing the card.
+      const moreLink = document.getElementById('photo-more');
+      if (moreLink) {
+        moreLink.textContent = `View all ${all.length} photos →`;
+        moreLink.href = PHOTO_PAGE;
+        moreLink.hidden = false;
+      }
+    })
+    .catch(() => {
+      // No manifest yet (or none readable) — keep the empty-state copy visible.
+      if (empty) empty.hidden = false;
+    });
+}
+
+let lightboxState = { photos: [], index: 0 };
+
+function renderLightbox() {
+  const { photos, index } = lightboxState;
+  const photo = photos[index];
+  if (!photo) return;
+  const img = document.getElementById('lightbox-img');
+  const cap = document.getElementById('lightbox-caption');
+  img.src = photoUrl(photo.file);
+  img.alt = photo.caption || prettifyPhotoName(photo.file);
+  cap.textContent = photos.length > 1
+    ? `${photo.caption || prettifyPhotoName(photo.file)} · ${index + 1} / ${photos.length}`
+    : (photo.caption || prettifyPhotoName(photo.file));
+}
+
+function openLightbox(photos, index) {
+  const box = document.getElementById('lightbox');
+  if (!box) return;
+  lightboxState = { photos, index };
+  renderLightbox();
+  box.hidden = false;
+  requestAnimationFrame(() => box.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lightbox-close').focus();
+}
+
+function closeLightbox() {
+  const box = document.getElementById('lightbox');
+  if (!box) return;
+  box.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { box.hidden = true; }, 300);
+}
+
+function stepLightbox(delta) {
+  const total = lightboxState.photos.length;
+  if (!total) return;
+  lightboxState.index = (lightboxState.index + delta + total) % total;
+  renderLightbox();
+}
+
+(function wireLightbox() {
+  const box = document.getElementById('lightbox');
+  if (!box) return;
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-prev').addEventListener('click', (e) => { e.stopPropagation(); stepLightbox(-1); });
+  document.getElementById('lightbox-next').addEventListener('click', (e) => { e.stopPropagation(); stepLightbox(1); });
+  box.addEventListener('click', (e) => { if (e.target === box) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+})();
+
+initPhotography();
+
+// -------------------------------------------------------------
+// RESUME VERSIONS — mark a version "coming soon" until its PDF exists,
+// so a missing file never becomes a dead download link.
+// -------------------------------------------------------------
+document.querySelectorAll('.resume-link').forEach((link) => {
+  const href = link.getAttribute('href');
+  if (!href) return;
+
+  fetch(href, { method: 'HEAD' })
+    .then((res) => {
+      if (res.ok) return;
+      throw new Error('missing');
+    })
+    .catch(() => {
+      link.classList.add('unavailable');
+      link.setAttribute('aria-disabled', 'true');
+      link.removeAttribute('target');
+      const note = link.querySelector('.resume-note');
+      if (note) note.textContent = note.textContent + ' · coming soon';
+      link.addEventListener('click', (e) => e.preventDefault());
+    });
+});

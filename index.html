@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="css/style.css?v=8" />
+  <link rel="stylesheet" href="css/style.css?v=18" />
   
   <!-- Add Chart.js for Interactive Skills Graph -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -28,10 +28,12 @@
       </div>
       <nav class="nav-links">
         <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
+        <a href="photography.html">Photography</a>
         <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
       </nav>
     </div>
@@ -47,8 +49,18 @@
         AI Researcher & Quantitative Engineer. I build retrieval-augmented generation (RAG) pipelines, deep reinforcement learning trading systems, and autonomous research agents.
       </p>
       <div class="btn-row">
-        <a class="btn" href="https://github.com/Tanushree28" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Tanushree28" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-1.94c-3.2.69-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.19 1.78 1.19 1.04 1.78 2.72 1.27 3.38.97.11-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.2.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.74v20.52C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="https://scholar.google.com/citations?user=e39xk-AAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 8.5l4.2 2.48V18h1.6v-6.07L12 14.9l11-6.4L12 2zm0 15.13a5.2 5.2 0 0 1-4.1-2L12 12.8l4.1 2.33a5.2 5.2 0 0 1-4.1 2zM12 22c3.7 0 6.7-2.6 6.7-5.82 0-.63-.1-1.23-.3-1.78L12 18.17l-6.4-3.77c-.2.55-.3 1.15-.3 1.78C5.3 19.4 8.3 22 12 22z"/></svg>
+          Google Scholar
+        </a>
         <a class="btn ghost" href="assets/Tanushree_Nepal___Resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
     </section>
@@ -62,7 +74,7 @@
     <section class="bento-card span-1 row-span-1" id="about">
       <h2>About Me</h2>
       <p class="muted" style="font-size: 14px; margin-bottom: 16px;">
-        MSc Data Science & AI candidate with a strong foundation in statistical modeling and systems engineering. Aspiring PhD researcher focused on the intersection of deep learning and robust information retrieval.
+        I study where AI systems fail — not what they achieve under ideal conditions, but how they break down under noise, conflicting evidence, or incomplete information. My work spans biomedical RAG stress-testing (thesis, 3 accepted papers) and deep reinforcement learning for sequential decision-making under uncertainty, unified by one question: how do we know when a model can be trusted, and when it shouldn't be. Open to PhD research and applied ML/data science roles.
       </p>
       <div class="tags" style="margin-top: auto;">
         <span class="tag tech-glow">Research</span><span class="tag tech-glow">Applied ML</span><span class="tag tech-glow">NLP</span>
@@ -84,7 +96,7 @@
           <h3>Kalshi Algo Trading &amp; Arbitrage</h3>
           <p class="muted">High-frequency trading system in Rust with Deep Reinforcement Learning (DQN) in PyTorch to execute short-term arbitrage.</p>
           <div class="tags"><span class="tag">DQN</span><span class="tag">Rust</span><span class="tag">PyTorch</span></div>
-          <p style="margin-top:auto; padding-top: 12px;"><a href="http://68.183.174.225:8501" target="_blank" rel="noopener">View Dashboard →</a></p>
+          <p class="muted" style="margin-top:auto; padding-top: 12px; font-size: 13px;">Private deployment — live dashboard not publicly hosted; walkthrough available on request.</p>
         </article>
         <article class="card nested-card">
           <h3>Agentic Web-Retrieval Engine</h3>
@@ -95,10 +107,56 @@
       </div>
     </section>
 
-    <!-- PUBLICATIONS & RESEARCH (Bento Card) -->
-    <section class="bento-card span-4" id="publications">
-      <h2>Publications &amp; Research</h2>
+    <!-- ONGOING RESEARCH (Bento Card) — in-progress work, above Publications -->
+    <section class="bento-card span-4" id="ongoing-research">
+      <h2>Ongoing Research</h2>
       <div class="grid projects-grid">
+        <article class="card nested-card research-card">
+          <span class="status-badge active"><span class="pulse-dot"></span>Active</span>
+          <h3>Agentic AI for Cardiac Decision Support</h3>
+          <p class="research-meta">Aug 2026 – Present · Advisor: Dr. I Hua Tsai · MIT-BIH Arrhythmia (PhysioNet)</p>
+          <p class="muted">Building an agentic clinical decision-support system for cardiac care. Developed a two-branch 1D CNN + RR-interval arrhythmia classifier over 109K beats (AAMI 5-class), with controlled DS1/DS2 ablations evaluating macro-F1, average precision, Brier score, and ECE for downstream agent reliability.</p>
+          <div class="tags"><span class="tag">Agentic AI</span><span class="tag">1D CNN</span><span class="tag">Clinical ML</span><span class="tag">Calibration</span></div>
+        </article>
+        <article class="card nested-card research-card">
+          <span class="status-badge active"><span class="pulse-dot"></span>Active</span>
+          <h3>Fairness vs. Accuracy in Machine Learning Models</h3>
+          <p class="research-meta">May 2026 – Present · Advisor: Dr. Gorkem Kar</p>
+          <p class="muted">Built a PyTorch training method with a tunable accuracy–fairness trade-off, evaluated across five real-world decision-making datasets (criminal risk, income, credit default, health coverage). Reduced demographic-group disparities by up to 93% at under 0.5% accuracy loss.</p>
+          <div class="tags"><span class="tag">Algorithmic Fairness</span><span class="tag">PyTorch</span><span class="tag">Trustworthy ML</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS (Bento Card) — accepted / published / presented -->
+    <section class="bento-card span-4" id="publications">
+      <h2>Publications</h2>
+      <div class="grid projects-grid">
+        <article class="card nested-card pub-card">
+          <span class="status-badge">Accepted · Main Track</span>
+          <h3>Stress-Testing Biomedical Retrieval-Augmented Generation</h3>
+          <p class="muted pub-citation">Nepal, T., Shrestha, Y., Ansari, K., Dadala, K., Tsai, I.H., Feng, A. &ldquo;Stress-Testing Biomedical Retrieval-Augmented Generation: A Diagnostic Evaluation under Noise, Conflicting Evidence, and Unanswerability.&rdquo; <em>IEEE HealthCom 2026</em>, New York, NY, Oct 19–21, 2026.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">Biomedical NLP</span><span class="tag">Evaluation</span></div>
+        </article>
+        <article class="card nested-card pub-card">
+          <span class="status-badge">Published</span>
+          <h3>CodeBERT at the Watering Hole</h3>
+          <p class="muted pub-citation">Dadala, K., Nepal, T., Tsai, I.H. &ldquo;CodeBERT at the Watering Hole for Dual-Layer URL and JavaScript Attack Detection.&rdquo; <em>IEEE EIT 2026</em>. Presented May 22, 2026.</p>
+          <div class="tags"><span class="tag">CodeBERT</span><span class="tag">Security</span><span class="tag">Transformers</span></div>
+          <p style="margin-top:auto; padding-top: 12px;"><a href="https://scholar.google.com/citations?user=e39xk-AAAAAJ&amp;hl=en" target="_blank" rel="noopener">View on Google Scholar →</a></p>
+        </article>
+        <article class="card nested-card pub-card">
+          <span class="status-badge">Lightning Talk &amp; Poster</span>
+          <h3>What Hurts RAG in Biomedical QA</h3>
+          <p class="muted pub-citation">Nepal, T., Tsai, I.H. &ldquo;What Hurts RAG in Biomedical QA: A Stress-Test Study of Noise, Conflict, and Unanswerability.&rdquo; <em>MMLS 2026</em>, Purdue University, June 25, 2026.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">Stress-Testing</span><span class="tag">BioASQ</span></div>
+        </article>
+        <article class="card nested-card pub-card">
+          <span class="status-badge review">Under Review</span>
+          <h3>Generative Semantic Enhancement for Short-Video Recommendation</h3>
+          <p class="muted pub-citation">Nepal, T. et al. &ldquo;Generative Semantic Enhancement for Short-Video Feed Recommendation: A Converged Study on KuaiRec.&rdquo; <em>IEEE Big Data 2026</em>, Phoenix, AZ, Dec 14–17, 2026.</p>
+          <div class="tags"><span class="tag">RecSys</span><span class="tag">Generative Models</span><span class="tag">KuaiRec</span></div>
+        </article>
         <article class="card nested-card">
           <h3>Cyberbullying Detection via NLP</h3>
           <p class="muted">SVM-based NLP detection system on a 24k+ tweet dataset, achieving superior binary classification performance.</p>
@@ -122,11 +180,51 @@
       </section>
     </div>
 
-    <!-- EXPERIENCE (loaded via include) -->
-    <div data-include="sections/experience.html">
-      <section class="bento-card span-2" id="experience">
-        <h2>Experience</h2>
-        <p class="muted include-fallback">Loading experience timeline…</p>
+    <!-- LEFT STACK: Experience + Contact -->
+    <div class="span-2" style="display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- EXPERIENCE (loaded via include) -->
+      <div data-include="sections/experience.html">
+        <section class="bento-card span-2" id="experience">
+          <h2>Experience</h2>
+          <p class="muted include-fallback">Loading experience timeline…</p>
+        </section>
+      </div>
+
+      <!-- CONTACT (Bento Card) -->
+      <section class="bento-card tech-gradient-bg" id="contact" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 32px;">
+        <h2 style="margin-bottom: 8px;">Let's Connect</h2>
+        <p class="muted" style="margin-bottom: 24px; max-width: 80%;">Feel free to reach out for collaborations or just a friendly hello. Always open to discussing Data Science and AI.</p>
+        <div class="btn-row" style="justify-content: center; margin-top: 0;">
+          <a class="btn primary-btn" href="mailto:tanu.nepal1@gmail.com">Email Me</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.74v20.52C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn ghost" href="https://scholar.google.com/citations?user=e39xk-AAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 8.5l4.2 2.48V18h1.6v-6.07L12 14.9l11-6.4L12 2zm0 15.13a5.2 5.2 0 0 1-4.1-2L12 12.8l4.1 2.33a5.2 5.2 0 0 1-4.1 2zM12 22c3.7 0 6.7-2.6 6.7-5.82 0-.63-.1-1.23-.3-1.78L12 18.17l-6.4-3.77c-.2.55-.3 1.15-.3 1.78C5.3 19.4 8.3 22 12 22z"/></svg>
+            Google Scholar
+          </a>
+        </div>
+      </section>
+      
+
+      <!-- LIVE TRAFFIC (Bento Card) -->
+      <section class="bento-card" id="live-traffic" style="display: flex; flex-direction: column; position: relative; overflow: hidden; padding: 32px;">
+        <h2 style="margin-bottom: 20px;">Live System Traffic</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span class="muted" style="font-size: 14px;"><span class="pulse-dot"></span> Real-time Map Monitoring</span>
+          <div class="visitor-counter">
+            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted);">Total Visits</span><br/>
+            <strong id="visit-count" style="font-size: 24px; font-family: monospace; color: var(--accent); text-shadow: 0 0 10px var(--accent-glow);">--</strong>
+          </div>
+        </div>
+        <div id="activity-feed" class="activity-feed">
+          <!-- Populated by JS -->
+          <div style="text-align: center; color: var(--muted); align-self: center; margin-top: auto; margin-bottom: auto; opacity: 0.5;">
+            Initializing connection...
+          </div>
+        </div>
       </section>
     </div>
 
@@ -162,47 +260,41 @@
         </article>
       </section>
 
+      <!-- PHOTOGRAPHY teaser — full gallery lives on photography.html -->
+      <section class="bento-card" id="photography" style="display: flex; flex-direction: column;">
+        <h2 style="margin-bottom: 8px;">Photography</h2>
+        <p class="muted" style="margin: 0 0 20px; font-size: 14px;">Sky &amp; landscape shots I've taken.</p>
+        <div id="photo-grid" class="photo-grid" data-preview="2" aria-live="polite"></div>
+        <p id="photo-empty" class="muted" style="font-size: 13px; margin: 0;">
+          Photos coming soon — drop images into <code>assets/photography/</code> and they appear here.
+        </p>
+        <p style="margin: 16px 0 0;"><a id="photo-more" href="photography.html" hidden>View the gallery →</a></p>
+      </section>
+
       <!-- RESUME -->
       <section class="bento-card tech-gradient-bg" id="resume" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 24px;">
         <h2 style="margin-bottom: 12px; font-size: 24px;">Resume / CV</h2>
-        <p class="muted" style="margin-bottom: 24px; font-size: 14px;">Download my full resume to view my background, complete experience, and technical projects in detail.</p>
-        <a class="btn primary-btn" href="assets/Tanushree_Nepal___Resume.pdf" target="_blank" rel="noopener" style="padding: 12px 28px;">
-          📄 Download PDF
-        </a>
-      </section>
-    </div>
-
-    <!-- BOTTOM SECTIONS: Traffic + Contact (Span 4 Total) -->
-    <div class="span-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-      
-      <!-- LIVE TRAFFIC (Bento Card) -->
-      <section class="bento-card" id="live-traffic" style="display: flex; flex-direction: column; position: relative; overflow: hidden; padding: 32px;">
-        <h2 style="margin-bottom: 20px;">Live System Traffic</h2>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <span class="muted" style="font-size: 14px;"><span class="pulse-dot"></span> Real-time Map Monitoring</span>
-          <div class="visitor-counter">
-            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted);">Total Visits</span><br/>
-            <strong id="visit-count" style="font-size: 24px; font-family: monospace; color: var(--accent); text-shadow: 0 0 10px var(--accent-glow);">--</strong>
-          </div>
-        </div>
-        <div id="activity-feed" class="activity-feed">
-          <!-- Populated by JS -->
-          <div style="text-align: center; color: var(--muted); align-self: center; margin-top: auto; margin-bottom: auto; opacity: 0.5;">
-            Initializing connection...
-          </div>
+        <p class="muted" style="margin-bottom: 24px; font-size: 14px;">Three versions, depending on what you're reading for. Each opens as a PDF.</p>
+        <!-- Drop the three PDFs at these paths (names are the only thing to keep in sync):
+             assets/resume/Tanushree_Nepal_Academic_CV.pdf
+             assets/resume/Tanushree_Nepal_Corporate_Resume.pdf
+             assets/resume/Tanushree_Nepal_Full_CV.pdf
+             A file that is not there yet is shown as "coming soon" instead of a dead link. -->
+        <div class="resume-links">
+          <a class="btn resume-link" href="assets/resume/Tanushree_Nepal_Academic_CV.pdf" target="_blank" rel="noopener">
+            <span class="resume-label">📄 Research / Academic CV</span>
+            <span class="resume-note">Predoc &amp; RA roles</span>
+          </a>
+          <a class="btn resume-link" href="assets/resume/Tanushree_Nepal_Corporate_Resume.pdf" target="_blank" rel="noopener">
+            <span class="resume-label">💼 Corporate Resume</span>
+            <span class="resume-note">Industry ML / data science</span>
+          </a>
+          <a class="btn resume-link" href="assets/resume/Tanushree_Nepal_Full_CV.pdf" target="_blank" rel="noopener">
+            <span class="resume-label">🎓 Full CV</span>
+            <span class="resume-note">PhD outreach</span>
+          </a>
         </div>
       </section>
-
-      <!-- CONTACT (Bento Card) -->
-      <section class="bento-card tech-gradient-bg" id="contact" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 32px;">
-        <h2 style="margin-bottom: 8px;">Let's Connect</h2>
-        <p class="muted" style="margin-bottom: 24px; max-width: 80%;">Feel free to reach out for collaborations or just a friendly hello. Always open to discussing Data Science and AI.</p>
-        <div class="btn-row" style="justify-content: center; margin-top: 0;">
-          <a class="btn primary-btn" href="mailto:tanu.nepal1@gmail.com">Email Me</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/tanushree-nepal" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </section>
-      
     </div>
 
   </main>
@@ -245,7 +337,16 @@
     </div>
   </div>
 
+  <!-- PHOTO LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close photo">×</button>
+    <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous photo">‹</button>
+    <img id="lightbox-img" alt="" />
+    <button class="lightbox-nav next" id="lightbox-next" aria-label="Next photo">›</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
   <!-- JS -->
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+name: Rebuild photography manifest
+
+# Keeps assets/photography/manifest.json in sync with the images in that folder,
+# so adding photos is just: drop files in assets/photography/ and push.
+on:
+  push:
+    paths:
+      - 'assets/photography/web/**'
+      - '!assets/photography/manifest.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild manifest
+        run: bash scripts/build-photography-manifest.sh
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- assets/photography/manifest.json; then
+            echo "Manifest already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/photography/manifest.json
+          git commit -m "chore: rebuild photography manifest [skip ci]"
+          git push

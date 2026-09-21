@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photography — Tanushree Nepal</title>
+  <meta name="description" content="Sky and landscape photography by Tanushree Nepal." />
+  <link rel="icon" href="assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css?v=16" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <a href="index.html" style="display: flex; align-items: center; gap: 12px; color: inherit;">
+          <img src="assets/logo-tn.svg" alt="TN logo" class="logo" onerror="this.style.display='none'">
+          <span>Tanushree Nepal</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#education">Education</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="photography.html" aria-current="page">Photography</a>
+        <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 48px; padding-bottom: 64px;">
+    <section class="bento-card" style="display: block;">
+      <p style="margin: 0 0 16px;"><a href="index.html">← Back to portfolio</a></p>
+      <h1 style="font-size: 38px; margin: 0 0 10px;">Photography</h1>
+      <p class="muted" style="margin: 0 0 32px; font-size: 15px;">Sky &amp; landscape shots I've taken. Click any photo to view it full size.</p>
+
+      <div id="photo-grid" class="photo-grid photo-grid--page" aria-live="polite"></div>
+      <p id="photo-empty" class="muted" style="font-size: 14px; margin: 0;">
+        Photos coming soon — drop images into <code>assets/photography/</code> and run
+        <code>./scripts/build-photography-manifest.sh</code>.
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>© <span id="year"></span> Tanushree Nepal</div>
+      <div><a href="index.html">Back to portfolio →</a></div>
+    </div>
+  </footer>
+
+  <!-- PHOTO LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close photo">×</button>
+    <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous photo">‹</button>
+    <img id="lightbox-img" alt="" />
+    <button class="lightbox-nav next" id="lightbox-next" aria-label="Next photo">›</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script src="js/main.js?v=10"></script>
+</body>
+</html>
