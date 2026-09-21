@@ -55,42 +55,58 @@ document.querySelectorAll('[data-include]').forEach((placeholder) => {
 });
 
 // Image Slideshow Logic
+// Web-sized copies (assets/images/web/) — the full-resolution originals next to
+// them are ~27MB in total, far too heavy to rotate through. Rebuild them with
+// ./scripts/optimize-headshots.sh after adding a photo.
 const images = [
-  'assets/images/IMG_8682.jpeg',
-  'assets/images/20241005_124402.jpeg',
-  'assets/images/20250404_112919.jpeg',
-  'assets/images/IMG_4554.jpeg',
-  'assets/images/IMG_7545.jpeg',
-  'assets/images/IMG_7568.jpeg',
-  'assets/images/IMG_8670.jpeg',
-  'assets/images/headshot.jpg'
+  'assets/images/web/IMG_8682.jpg',
+  'assets/images/web/20241005_124402.jpg',
+  'assets/images/web/20250404_112919.jpg',
+  'assets/images/web/IMG_4554.jpg',
+  'assets/images/web/IMG_7545.jpg',
+  'assets/images/web/IMG_7568.jpg',
+  'assets/images/web/IMG_8670.jpg',
+  'assets/images/web/headshot.jpg'
 ];
-
-// Preload images so they render instantly when swapped
-images.forEach(src => {
-  const img = new Image();
-  img.src = src;
-});
 
 let currentImageIndex = 0;
 const slideshowImg = document.getElementById('profile-slideshow');
 
 if (slideshowImg) {
-  // Rotate every 5 seconds (5000 ms)
-  setInterval(() => {
-    // 1. Fade out by dropping opacity
+  // Load the next frame before fading, so the card never sits empty waiting for
+  // an image that hasn't arrived yet.
+  const preload = (src) => new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(src);
+    img.onerror = () => reject(new Error(src));
+    img.src = src;
+  });
+
+  const rotate = async () => {
+    let nextIndex = currentImageIndex;
+
+    // Skip any frame that fails to load rather than fading to nothing.
+    for (let attempt = 0; attempt < images.length; attempt++) {
+      nextIndex = (nextIndex + 1) % images.length;
+      try {
+        await preload(images[nextIndex]);
+        break;
+      } catch (err) {
+        if (attempt === images.length - 1) return;
+      }
+    }
+
     slideshowImg.style.opacity = '0';
-    
-    // 2. Wait for fade out to finish
     setTimeout(() => {
-      // 3. Swap the image source
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      slideshowImg.src = images[currentImageIndex];
-      
-      // 4. Wait for the image to logically load (or just force reflow), then fade back in
+      currentImageIndex = nextIndex;
+      slideshowImg.src = images[nextIndex];
       slideshowImg.style.opacity = '1';
-    }, 800); 
-  }, 5000);
+    }, 800);
+  };
+
+  setInterval(rotate, 5000);
+  // Warm the next frame only; the rest load as they come up.
+  preload(images[1]).catch(() => {});
 }
 
 // -------------------------------------------------------------
